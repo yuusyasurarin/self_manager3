@@ -32,7 +32,7 @@ h1{…
 <img width="500" height="250" alt="image" src="https://github.com/user-attachments/assets/d1d7deac-2df1-4269-8bd6-b428e815a128" />
 
 - **JavaScript**はパーツに動きを加える。(HTML+CSSでwebサイトに動きを付け加えることができる。ユーザーの動きに応じた動的なページを作成することができるようになる。)
-<img width="1000" height="500" alt="image" src="https://github.com/user-attachments/assets/77802936-b867-4591-8e14-c0448e41846d" />
+<img width="500" height="250" alt="image" src="https://github.com/user-attachments/assets/77802936-b867-4591-8e14-c0448e41846d" />
 
 
 
