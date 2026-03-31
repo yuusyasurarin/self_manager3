@@ -1,0 +1,308 @@
+:root {
+  --bg-color: #f5f7fa;
+  --text-color: #333;
+  --primary-color: #4a90e2;
+  --primary-hover: #357abd;
+  --card-bg: #fff;
+  --border-color: #eaeaea;
+  --shadow: 0 4px 6px rgba(0,0,0,0.05);
+  --error-color: #e74c3c;
+  --star-color: #f1c40f;
+  --star-inactive: #ddd;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a2e;
+  --text-color: #e0e0e0;
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --card-bg: #16213e;
+  --border-color: #2a2a4a;
+  --shadow: 0 4px 6px rgba(0,0,0,0.3);
+  --star-inactive: #444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* ユーティリティ */
+.hidden { display: none !important; }
+
+/* 画面共通配置 */
+.screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* PIN入力 */
+#pin-screen {
+  justify-content: center;
+  align-items: center;
+}
+.pin-container {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  width: 90%;
+  max-width: 320px;
+}
+.pin-container h2 { margin-bottom: 0.5rem; }
+.pin-container p { font-size: 0.9rem; margin-bottom: 1.5rem; opacity: 0.8; }
+#pin-input {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+#pin-error { color: var(--error-color); font-size: 0.85rem; margin-top: 0.5rem; height: 1rem; }
+
+/* ボタン類 */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: transform 0.1s, opacity 0.2s;
+}
+button:active { transform: scale(0.97); }
+.primary-btn, .save-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(74, 144, 226, 0.3);
+}
+.full-width { width: 100%; margin-top: 1rem; }
+.back-btn { color: var(--primary-color); font-weight: 600; }
+
+/* ヘッダー */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--card-bg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+header h1 { font-size: 1.25rem; font-weight: 600; }
+
+/* ボトムナビ */
+.bottom-nav {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: var(--card-bg);
+  box-shadow: 0 -1px 3px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+.nav-btn {
+  flex: 1;
+  padding: 1rem;
+  color: var(--text-color);
+  opacity: 0.6;
+}
+.nav-btn.active {
+  opacity: 1;
+  color: var(--primary-color);
+  border-top: 2px solid var(--primary-color);
+  font-weight: 600;
+}
+
+/* メインエリア */
+#content-area {
+  padding: 1rem;
+  padding-bottom: 5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ビューのヘッダー */
+.view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.view-header button { font-size: 1.2rem; color: var(--text-color); padding: 0.5rem; }
+.view-header h2 { font-size: 1.1rem; }
+
+/* 目標・テキストエリア */
+.goal-section, .diary-section {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+.goal-section h3, .diary-section h3, .tasks-section h3, .rating-section h3 {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  opacity: 0.9;
+}
+textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  resize: vertical;
+  font-family: inherit;
+  margin-bottom: 0.5rem;
+}
+.goal-section .save-btn { display: block; margin-left: auto; font-size: 0.9rem; padding: 0.5rem 1rem; }
+
+/* カレンダー */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 1rem;
+}
+.day-cell {
+  background: var(--card-bg);
+  border-radius: 8px;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.day-cell.empty { background: transparent; box-shadow: none; cursor: default; }
+.day-cell .date-num { font-size: 0.9rem; font-weight: 500; }
+.day-cell .rating-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-top: 4px;
+}
+
+/* 5段階評価用の色 (1:赤〜5:青緑) */
+.rate-5 { background-color: #2ecc71; }
+.rate-4 { background-color: #3498db; }
+.rate-3 { background-color: #f1c40f; }
+.rate-2 { background-color: #e67e22; }
+.rate-1 { background-color: #e74c3c; }
+
+/* 週間リスト */
+.weekly-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.weekly-day-card {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 星の評価入力 */
+.star-rating {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.star-rating span {
+  color: var(--star-inactive);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.star-rating span.active { color: var(--star-color); }
+
+/* タスクリスト */
+.tasks-section {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+.task-input-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.task-input-container input {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-color);
+  color: var(--text-color);
+}
+#task-list {
+  list-style: none;
+}
+#task-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+#task-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.task-text { flex: 1; margin: 0 0.8rem; cursor: pointer; }
+.task-text.completed { text-decoration: line-through; opacity: 0.5; }
+.task-checkbox { width: 20px; height: 20px; cursor: pointer; }
+.delete-task { color: var(--error-color); padding: 0.2rem; }
+
+/* ローディング */
+#loading-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.spinner {
+  width: 40px; height: 40px;
+  border: 4px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }

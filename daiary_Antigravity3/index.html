@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Diary & Goals</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ローディングオーバーレイ -->
+  <div id="loading-overlay" class="hidden">
+    <div class="spinner"></div>
+    <p>通信中...</p>
+  </div>
+
+  <!-- PIN入力画面 -->
+  <div id="pin-screen" class="screen">
+    <div class="pin-container">
+      <h2>セキュリティロック</h2>
+      <p>PINコードを入力してください</p>
+      <input type="password" id="pin-input" maxlength="4" placeholder="----">
+      <button id="pin-submit-btn" class="primary-btn">入室</button>
+      <div id="pin-error" class="error-msg"></div>
+    </div>
+  </div>
+
+  <!-- メイン画面 -->
+  <div id="main-screen" class="screen hidden">
+    <header>
+      <h1>My App</h1>
+      <div class="header-actions">
+        <button id="theme-toggle" aria-label="テーマ切替">🌙</button>
+      </div>
+    </header>
+    
+    <nav class="bottom-nav">
+      <button id="nav-monthly" class="nav-btn active">月間</button>
+      <button id="nav-weekly" class="nav-btn">週間</button>
+    </nav>
+
+    <main id="content-area">
+      <!-- 月間表示エリア -->
+      <div id="view-monthly" class="view">
+        <div class="view-header">
+          <button id="prev-month">&lt;</button>
+          <h2 id="current-month-label">YYYY年M月</h2>
+          <button id="next-month">&gt;</button>
+        </div>
+        <div class="goal-section">
+          <h3>今月の目標</h3>
+          <textarea id="monthly-goal-input" placeholder="目標を入力..."></textarea>
+          <button id="save-monthly-goal" class="save-btn">保存</button>
+        </div>
+        <div class="calendar" id="calendar-grid">
+          <!-- JSで日付マスを生成 -->
+        </div>
+      </div>
+
+      <!-- 週間表示エリア -->
+      <div id="view-weekly" class="view hidden">
+        <div class="view-header">
+          <button id="prev-week">&lt;</button>
+          <h2 id="current-week-label">YYYY年 第W週</h2>
+          <button id="next-week">&gt;</button>
+        </div>
+        <div class="goal-section">
+          <h3>今週の目標</h3>
+          <textarea id="weekly-goal-input" placeholder="目標を入力..."></textarea>
+          <button id="save-weekly-goal" class="save-btn">保存</button>
+        </div>
+        <div class="weekly-list" id="weekly-grid">
+           <!-- JSで生成 -->
+        </div>
+      </div>
+
+      <!-- 1日の詳細エリア -->
+      <div id="view-daily" class="view hidden">
+        <div class="view-header">
+          <button id="back-to-calendar" class="back-btn">&lt; 戻る</button>
+          <h2 id="current-date-label">YYYY年M月D日</h2>
+        </div>
+        
+        <div class="rating-section">
+          <h3>今日の評価 (5段階)</h3>
+          <div class="star-rating" id="daily-rating">
+            <span data-val="1">★</span><span data-val="2">★</span><span data-val="3">★</span><span data-val="4">★</span><span data-val="5">★</span>
+          </div>
+        </div>
+
+        <div class="tasks-section">
+          <h3>タスク</h3>
+          <div class="task-input-container">
+            <input type="text" id="new-task-input" placeholder="新しいタスク">
+            <button id="add-task-btn" class="primary-btn">+</button>
+          </div>
+          <ul id="task-list"></ul>
+        </div>
+
+        <div class="diary-section">
+          <h3>日記</h3>
+          <textarea id="daily-diary-input" placeholder="今日のできごと..."></textarea>
+        </div>
+        
+        <button id="save-daily-record" class="save-btn full-width">本日の記録を保存</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
